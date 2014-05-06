@@ -1,0 +1,278 @@
+$red: #903;
+$black: #444;
+$white: #fff;
+$blue: #002EB8;
+$main-font: Helvetica, Arial, sans-serif;
+
+body {
+  font-family: $main-font;
+}
+
+h1 {
+	color: $red;
+	font: 32px/1 $main-font;
+	text-align:left;
+	font-weight:bold;
+}
+
+h2 {
+	color: $red;
+	text-align:left;
+	font-weight:bold;
+	margin: 0;
+}
+
+.mochatitle {
+	color: $white;
+	font: 16px/1 $main-font;
+	text-align:left;
+	font-weight:bold;
+}
+
+@mixin tabs ($background: blue, $color: yellow) {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius:10px;
+    background: $background;
+    overflow: hidden;
+  }
+  li {
+    float: left;
+  }
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    background: $background;
+    color: $color;
+    &:hover {
+      background: darken($background, 20%);
+    }
+  }
+}
+
+.menu {
+  @include tabs ($background: $black, $color: $white);
+  font-weight: bold;
+}
+
+
+p {
+  font: 13px/1.4 $main-font;
+  text-align:justify;
+}
+
+label {
+  display: block;
+}
+
+.menu a.current {
+  background: lighten($black, 50%);
+}
+
+.flash {
+  width: 600px;
+  padding: 5px;
+  font-weight: bold;
+  margin: 20px;
+  background: lighten($red, 60%);
+  color: $red;
+  border: 1px solid $red;
+}
+
+#wrapper{
+	width:1200px;
+	margin: 0 auto;
+}
+
+.picture{
+	height: 75px;
+	margin-bottom: 5px;
+	margin-top:5px;
+	img{
+		height:100%;
+		border-radius:15px;
+	}
+
+}
+
+
+#logo{
+	height:350px;
+	margin-bottom:5px;
+	img{
+		height:100%;
+	}
+
+}
+
+.divdoble{
+  margin-t
+  width: 100%;
+  float:left;
+  .divmitad{
+     width:50%;
+     float:left;
+  }
+}
+
+.loadfile {
+  background-color: $black;
+  border-radius: 10px;
+  line-height: 80px;
+  height: 20px;
+  padding:10px 10px 15px 10px;
+  margin: 10px auto;
+  button, input {
+    color: $black;
+    float: left;
+    list-style: none;
+
+    display: inline;
+    text-align: center;
+    font-weight: bolder;
+  }
+   
+  button:hover, input:hover {
+    cursor:pointer;
+  }
+}
+
+#parse {
+  border-radius: 15px;
+  border:none;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #904;
+  color: $white;
+ }
+
+#parse:hover {
+  cursor: pointer;
+  background-color: lighten(#904, 20%);
+  color: #333;
+}
+
+#wipe {
+  border-radius: 15px;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #2a87b2;
+  color: $white;
+}
+
+
+#wipe:hover {
+  cursor: pointer;
+  background-color: lighten(#2a87b2, 20%);
+  color: #333;
+}
+
+#error {
+  margin: 0 auto;
+  margin-top:10px;
+  border-radius:10px;
+  padding:15px;
+  color: white;
+  background-color: $red;
+  text-align:left;
+}
+
+
+.centered {
+  text-align: center;
+}
+
+.justified {
+  text-align: justify;
+}
+
+.left{
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.output{
+  padding: 20px;
+  text-align: left;
+  color: white;
+  border-radius: 10px;
+  background-color: #000;
+}
+
+.divoutput{
+  margin-left:10px;
+  width:45%;
+  float:left;
+}
+
+
+#input{
+	text-align: left;
+	width:100%;
+}
+
+form{
+	margin-top:5px;
+	text-align:left;
+}
+
+.login{
+	li{
+		height:50px;
+		margin-bottom:5px;
+		display: inline;
+		list-style-type: none;
+	}
+}
+
+.borderradius{
+	border-radius:5px;
+}
+
+
+.relative{
+	position:relative;
+}
+
+.insession{
+	line-height:50px;
+	img {
+		vertical-align:bottom;		
+	}
+}
+
+.fileList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius:10px;
+    background: $background;
+    overflow: hidden;
+  li {
+    float: left;
+  }
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    background: $background;
+    color: $color;
+    &:hover {
+      background: #2a87b2;
+    }
+  }
+}
+.hidden{
+	visibility:hidden;
+	height:0;
+}
+.unhidden{
+	visibility:visible;
+}

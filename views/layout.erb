@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jison for PL0 Based languages</title>
+    <link rel="icon" type="image/jpg" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body class="centered">
+      <div id="wrapper">
+	<header class="centered relative">
+		<div id="logo">
+			<img alt="ASA Parser Logo" src="/images/logo.png">
+		</div>
+        <div id="networks" class="right">	
+		<div class="insession">
+	     		<%=inSession?()%> <img src="/images/arrow.png" alt="Click below" >
+		</div>
+		<div class="oauths">
+		<a href="/auth/google_oauth2" title="Google" <%=current?("/auth/google_oauth2")%>><img alt="Google" src="/images/google.png"></a>
+		<a href="/auth/facebook" title="Facebook" <%=current?("/auth/facebook")%>><img  alt="Facebook" src="/images/facebook.png"></a> 
+		<a href="/auth/github" title="Github" <%=current?("/auth/github")%>><img  alt="Github" src="/images/github.png"></a> 
+		</div>
+	</div>		
+
+	</header>
+        <nav class="menu">
+            <ul>
+        	<li> <a href="/"  title="Home" <%=current?("/")%>>Home</a> </li>
+		<li> <a href="/listfiles"  title="List my Files!" <%=current?("/grammar")%>>List my Files! </a> </li>
+		<li><a href="https://www.youtube.com/watch?v=z7Le89KLtKM" target="_blank" title="Video">Video</a></li>
+        	<li> <a href="/grammar"  title="Grammar" <%=current?("/grammar")%>>Grammar</a> </li>
+		<li> <a href="/tests" title="Tests" <%=current?("/tests")%>>Tests</a> </li>
+		<li> <a href="https://github.com/alu0100698411/ambito-pl0-jison/" target="_blank" title="Github Repo">Github Repo</a> </li>        	
+		<li> <a href="http://en.wikipedia.org/wiki/Recursive_descent_parser#Example_parser"  target="_blank" title="Wikipedia">PL0</a> </li>
+        	<li> <a href="http://zaach.github.io/jison/" target="_blank" title="Jison">Jison</a> </li>
+        	<li> <a href="http://intridea.github.io/omniauth/" target="_blank" title="Omniauth">Intridea Omniauth</a> </li>
+        	<li> <a href="https://console.developers.google.com/project" target="_blank" title="Google Developers Console">Google Developers Console</a> </li>
+        	<li> <a href="https://github.com/SFEley/sinatra-flash" target="_blank" title="sinatra-flash">sinatra-flash</a> </li>
+        	<li> <a href="https://plus.google.com/u/0/+CasianoRodriguezLeon/" target="_blank" title="crguezl">crguezl</a> </li>
+          </ul>
+      </nav>
+      <section>
+
+	   <%= yield %>
+      </section>
+    </div>
+  </body>
+</html>

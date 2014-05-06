@@ -1,0 +1,54 @@
+<h1>Jison PL0 Parser with Scope Analysis</h1>
+<div id="content">
+
+	<!-- Create a simple CodeMirror instance -->
+	<link rel="stylesheet" href="codemirror/codemirror.css">
+	<script src="codemirror/codemirror.js"></script>
+	<script src="codemirror/pl0g.js"></script>
+	<div class="loadfile"><input type="file" id="examples" /></div>
+	<div id="form">
+		<form action="/save" method="post">
+			<textarea id="input" name="input" autofocus rows = "10"><%= source %></textarea>
+			<div class="divdoble">
+				<div class="divmitad left">
+					<label for="saveas"><b>Save file as</b></label>
+					<input id="saveas" type="text" name="fname" title="name" pattern="\w+" />
+
+				</div>
+				<div class="divmitad right">
+					<button id="wipe" type="button">CLEAR EDITOR</button>
+					<button id="parse" type="button">CLICK HERE FOR PARSING</button>
+				</div>
+			</div>
+		</form>	  
+		<pre class="hidden justified">	
+			<div id="error"></div>
+		</pre>
+	</div>
+  <div id="flash"><%= flash[:notice] if flash[:notice]%></div>
+
+  <div id="salida" class="divdoble hidden">
+      <pre class="output divoutput">
+	     <h3>AST</h3>
+	      <div id="output">
+	      </div>
+      </pre>
+
+      <pre class="output divoutput">
+	<h3>AST with scope analysis</h3>
+	<div id="ambit">
+	</div>
+      </pre>
+  </div>	
+
+</div>
+
+<!-- Script para el CodeMirror -->
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
+      lineNumbers: true
+    });
+</script>
+
+<script type="text/javascript" src="/javascript/pl0.js"></script>
+<script type="text/javascript" src="/javascript/main.js"></script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="tests/mocha.css" />
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+	<div id="mocha"></div>
+	<div id="wrapper"></div>
+    <script type="text/javascript" src="tests/chai.js"></script>
+    <script type="text/javascript" src="tests/mocha.js"></script>
+    <script type="text/javascript" src="javascript/main.js"></script>
+    <script type="text/javascript" src="javascript/pl0.js"></script>
+    <script>mocha.setup('tdd')</script>
+    <script type="text/javascript" src="tests/tests.js"></script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
+
+

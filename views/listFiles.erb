@@ -1,0 +1,11 @@
+ <div class="picture"> <img src="<%= session[:image] %>" alt="Hey, it's me!"> </div>
+<div class="fileContainer centered"> 
+<h2>My files</h2>
+<ul class="fileList">
+
+<%programlist.each do|p| %>
+          <li><a href="<%= p.name %>"><%= p.name %></a></li>
+ <% end %>
+
+  </ul>
+</div>

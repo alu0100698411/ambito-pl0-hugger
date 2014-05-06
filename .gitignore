@@ -1,0 +1,8 @@
+jquery
+public/javascript/pl0.js
+database.db
+config/*_config.yml
+config/*_config_filled.yml
+.bundle
+.sass-cache
+*~

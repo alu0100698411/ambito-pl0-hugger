@@ -1,0 +1,117 @@
+<script type="text/javascript" src="path-to-mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<br>
+<div class="justified">
+Recuerde que una gramática $G$ es una cuaterna $G =(\Sigma,V,P,S)$.
+<ol>
+  <li>$\Sigma$ es el conjunto de terminales. 
+  <li>$V$ es un conjunto (disjunto de $\Sigma$) que se denomina conjunto de <i>variables sintácticas</i> o <i>categorías gramáticales</i>,
+  <li>$P$ es un conjunto de pares de $V \times (V \cup \Sigma )^*$. En vez de escribir
+  un par usando la notación $(A, \alpha) \in P$ se escribe $A \rightarrow \alpha$.
+  Un elemento de $P$ se denomina producción. 
+  <li>Por último, $S$ es un símbolo del conjunto
+  $V$ que se denomina símbolo de arranque.
+</ol>
+<ol>
+  <li> $\Sigma = \{ ; =, ID, +, -, *, /, \text{^}, !, \%, (, ), NUMBER, ==, <=, >=, !=, CALL, PROCEDURE, CONST, VAR, WHILE, DO, IF, THEN, ELSE, BEGIN, END, ODD\}$, 
+  <li> $V = \{ program, block, variable, idlist, constant, constantlist, argumentlist, procedure, statement, ifstatement, statementlist, condition, expresion, termlist, term, factor, listfactor\}$
+  <li> Production,s:
+  <ol>
+    <li>
+<pre>
+program
+        : block "." EOF 
+        ;
+ 
+block
+        : constant variable procedure statement 
+        ;
+ 
+variable
+        : /* empty */
+        | VAR idlist ";" variable 
+        ;
+idlist
+        : ident 
+        | idlist ","  ident 
+        ;
+ 
+ident
+	: ID 
+	;
+
+ 
+constant
+        : /* empty */
+        | CONST constantlist ";" constant
+        ;
+ 
+constantlist
+        : idnumber 
+        | constantlist ","  idnumber 
+        ;
+ 
+idnumber
+        :  ID "=" NUMBER
+        ;
+ 
+argumentlist
+        : base 
+        | argumentlist ","  base  
+        | /* empty */
+        ;
+ 
+ 
+procedure
+        : /* empty */
+        | PROCEDURE ID "(" argumentlist ")" ";" block ";" procedure 
+        ;
+
+statement
+        : ID "=" expresion 
+        | CALL ID "(" argumentlist ")" 
+        | BEGIN statementlist END 
+        | ifstatement
+        | WHILE '(' condition ')'  DO statement 
+        ;
+ 
+ifstatement
+        : IF '(' condition ')' THEN statement
+        | IF '(' condition ')' THEN statement ELSE statement 
+        ;
+ 
+statementlist
+        : statement 
+        | statementlist ";" statement 
+        ;
+
+condition
+        : ODD expresion 
+        | expresion COMPARISON expresion 
+        ;
+
+expresion
+  	: expresion '+' expresion
+  	| expresion '-' expresion 
+ 	| expresion '*' expresion 
+ 	| expresion '/' expresion 
+ 	| '-' expresion %prec UMINUS 
+ 	| base
+ 	;
+
+base
+        : ID 
+        | NUMBER 
+        | "(" expresion ")" 
+        ;
+</pre>
+  </ol>
+  <li> Start symbol: $prog$
+</ol>
+</div>
