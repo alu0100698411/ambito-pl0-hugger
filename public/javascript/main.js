@@ -1,30 +1,84 @@
+var tree;
+var scope_tree;
+var folding_tree;
+var current_tree;
+
 $(document).ready(function() {
+
+    $(window).scroll(function() {
+        if($(this).scrollTop() > 100){
+            $('#goTop').stop().animate({
+                top: '20px'    
+                }, 500);
+        }
+        else{
+            $('#goTop').stop().animate({
+               top: '-100px'    
+            }, 500);
+        }
+    });
+    $('#goTop').click(function() {
+        $('html, body').stop().animate({
+           scrollTop: 0
+        }, 500, function() {
+           $('#goTop').stop().animate({
+               top: '-100px'    
+           }, 500);
+        });
+    });
+
   $('#parse').click(function() {
     editor = $(".CodeMirror")[0].CodeMirror
-    var t;
-    /*var t1;
-    var t2;*/
-    try {
-      t = pl0.parse(editor.getValue());
-      $('#output').html(JSON.stringify(t,undefined,2));
-     // t1 = scopeAnalysis(t);
-     // t2 = constantFolding(t1);
-	constantFoldingGeneral(scopeAnalysis(t));
-      $('#ambit').html(JSON.stringify(t,undefined,2));
 
+    try {
+      tree = pl0.parse(editor.getValue());
+      scope_tree = clone(tree);
+      scopeAnalysis(scope_tree);
+      folding_tree = clone(scope_tree);
+      constantFoldingGeneral(folding_tree);
+      $('#output').html(JSON.stringify(tree,undefined,2));
+      $('#AST').addClass("treeListCurrent");
+      current_tree = '#AST';
       $( '#salida').removeClass( "divdoble hidden" ).addClass( "divdoble unhidden" );
       $( '#error').removeClass( "unhidden" ).addClass( "hidden" );
+
     } catch (e) {
       $( '#error').removeClass( "hidden" ).addClass( "unhidden" );
       $( '#salida').removeClass( "divdoble unhidden" ).addClass( "divdoble hidden" );
       $('#error').html('<pre>\n' + String(e) + '\n</pre>');
     }
   });
+
+  $('#AST').click(function() {
+ 	document.getElementById('output').innerHTML=JSON.stringify(tree,undefined,2);
+	$('#AST').addClass("treeListCurrent");
+	$(current_tree).removeClass("treeListCurrent");
+        current_tree = '#AST';
+	    
+  });
+
+  $('#ASTS').click(function() {
+ 	document.getElementById('output').innerHTML=JSON.stringify(scope_tree,undefined,2);
+	$('#ASTS').addClass("treeListCurrent");
+	$(current_tree).removeClass("treeListCurrent");
+        current_tree = '#ASTS';
+	    
+  });
+
+  $('#ASTC').click(function() {
+ 	document.getElementById('output').innerHTML=JSON.stringify(folding_tree,undefined,2);
+	$('#ASTC').addClass("treeListCurrent");
+	$(current_tree).removeClass("treeListCurrent");
+        current_tree = '#ASTC';
+	    
+  });
+
   $('#wipe').click(function() {
     editor = $(".CodeMirror")[0].CodeMirror
     editor.setValue("");
 	    
   });
+
   $("#examples").change(function(ev) {
     var f = ev.target.files[0]; 
     var r = new FileReader();
@@ -36,7 +90,22 @@ $(document).ready(function() {
     r.readAsText(f);
   });
 
+function clone( obj ) {
+    if ( obj === null || typeof obj  !== 'object' ) {
+	return obj;
+    }
+ 
+    var temp = obj.constructor();
+    for ( var key in obj ) {
+	temp[ key ] = clone( obj[ key ] );
+    }
+ 
+    return temp;
+}
+
 });
+
+
 
 
 var symbolTableActual;

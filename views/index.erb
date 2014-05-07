@@ -28,17 +28,20 @@
   <div id="flash"><%= flash[:notice] if flash[:notice]%></div>
 
   <div id="salida" class="divdoble hidden">
-      <pre class="output divoutput">
-	     <h3>AST</h3>
-	      <div id="output">
+
+      <div class="outputizq">
+	<ul class="treeList">
+		<li id="AST">AST</li>
+		<li id="ASTS">AST with scope analysis</li>
+		<li id="ASTC">AST with constant folding</li>
+	</ul>
+      </div>
+      <pre class="outputdcha">
+	      <div id="output" class="output">
+		a
 	      </div>
       </pre>
 
-      <pre class="output divoutput">
-	<h3>AST with scope analysis</h3>
-	<div id="ambit">
-	</div>
-      </pre>
   </div>	
 
 </div>

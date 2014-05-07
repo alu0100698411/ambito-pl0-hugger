@@ -187,9 +187,17 @@ label {
   background-color: #000;
 }
 
-.divoutput{
+.outputizq{
   margin-left:10px;
-  width:45%;
+  width:30%;
+  float:left;
+}
+
+
+.outputdcha{
+  margin: 0;
+  margin-left:10px;
+  width:68%;
   float:left;
 }
 
@@ -268,4 +276,47 @@ form {
 .unhidden{
 	visibility:visible;
 }
+
+.treeList li.treeListCurrent{
+  background: #2a87b2;
+}
+
+.treeList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 14px;
+}
+.treeList li {
+  text-align:center;
+  margin-top:5px;
+  margin-bottom:5px;
+  border-radius: 10px;
+  display: block;
+  padding: 8px;
+  background: #444;
+  color: #fff;
+}
+.treeList li:hover {
+  background: #2a87b2;
+}
+#goTop{
+	border-radius: 15px;
+	border: none;
+	padding: 10px;
+	font-weight: bold;
+	background-color: #2a87b2;
+	color: #fff;
+	position:fixed;
+	top:-100px;
+	right:10px;
+}
+
+#goTop:hover {
+  cursor: pointer;
+  background-color: #67b6db;
+  color: #333;
+}
+
+
 
