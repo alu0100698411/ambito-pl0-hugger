@@ -310,6 +310,7 @@ form {
 	position:fixed;
 	top:-100px;
 	right:10px;
+	z-index:10;
 }
 
 #goTop:hover {
