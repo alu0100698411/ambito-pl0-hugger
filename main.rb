@@ -28,6 +28,10 @@ get '/grammar' do
   erb :grammar
 end
 
+get '/video' do
+  erb :video
+end
+
 get '/tests' do
   erb :tests
 end
