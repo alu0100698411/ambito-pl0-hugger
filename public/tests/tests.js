@@ -1,5 +1,6 @@
 var assert = chai.assert;
 
+
 suite('Pruebas para el parser', function(){
   test('Asociacion a izquierdas resta', function(){
 	var input = "VAR a;\na = -1-2-3.";
@@ -59,6 +60,39 @@ test('Pasar a una funcion un parametro sin definir', function(){
 test('Parametro sin definir dentro de una funcion', function(){
 	  assert.throws(function() { scopeAnalysis(pl0.parse("CONST PI = 3.14;\nVAR alto, ancho;\nVAR largo;\nPROCEDURE area(x, y);\nVAR resultado;\nBEGIN\nIF(x != 0) THEN\nerror = x * y\nELSE\nresultado = 0\nEND;\nPROCEDURE volumen(x,y,z);\nVAR resultado;\nresultado = x * y * z;\nBEGIN\nCALL area(alto, ancho);\nCALL volumen(alto, ancho, largo)\nEND.")); }, "Identifier \"error\" has not being declared and it\'s being used");
 
+  });
+
+});
+
+suite('Pruebas para el plegado de constantes', function(){
+  test('Plegado con menos unario  (-)', function(){
+	var input = "CONST PI = 3.14;\nVAR a;\nBEGIN\na = -3 + 5\nEND.";
+	var resultado = pl0.parse(input);
+	scopeAnalysis(resultado);
+	constantFoldingGeneral(resultado);
+	assert.equal(resultado.statements.statements[0].type, "ASSIGMENT");
+	assert.equal(resultado.statements.statements[0].right.type, "NUMBER");
+	assert.equal(resultado.statements.statements[0].right.value, "2");
+  });
+
+test('Plegado con varios niveles', function(){
+	var input = "CONST PI = 3.14;\nVAR a;\nBEGIN\na = -3 + 5 * 2\nEND.";
+	var resultado = pl0.parse(input);
+	scopeAnalysis(resultado);
+	constantFoldingGeneral(resultado);
+	assert.equal(resultado.statements.statements[0].type, "ASSIGMENT");
+	assert.equal(resultado.statements.statements[0].right.type, "NUMBER");
+	assert.equal(resultado.statements.statements[0].right.value, "7");
+  });
+
+test('Plegado con constantes', function(){
+	var input = "CONST PI = 3.14;\nVAR a;\nBEGIN\na = -PI + 5 * 2\nEND.";
+	var resultado = pl0.parse(input);
+	scopeAnalysis(resultado);
+	constantFoldingGeneral(resultado);
+	assert.equal(resultado.statements.statements[0].type, "ASSIGMENT");
+	assert.equal(resultado.statements.statements[0].right.type, "NUMBER");
+	assert.equal(resultado.statements.statements[0].right.value, "6.859999999999999");
   });
 
 });
