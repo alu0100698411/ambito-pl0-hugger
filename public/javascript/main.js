@@ -37,6 +37,9 @@ $(document).ready(function() {
       folding_tree = clone(scope_tree);
       constantFoldingGeneral(folding_tree);
       $('#output').html(JSON.stringify(tree,undefined,2));
+      if(current_tree){
+      	$(current_tree).removeClass("treeListCurrent");
+      }
       $('#AST').addClass("treeListCurrent");
       current_tree = '#AST';
       $( '#salida').removeClass( "divdoble hidden" ).addClass( "divdoble unhidden" );
