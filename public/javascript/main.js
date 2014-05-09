@@ -345,7 +345,7 @@ function nodeAnalysis(node){
 		case "CALL":
 			if(estaDefinidoProcedure(node.name) == -1){
 				throw("Identifier \""+ node.name + "\" has not being declared and it's being used");	
-			}else if(estaDefinidoProcedure(node.name) != node.arguments.length){
+			}else if(node.arguments !== undefined && estaDefinidoProcedure(node.name) != node.arguments.length){
 					throw("Procedure \""+ node.name + "\" expects " + estaDefinidoProcedure(node.name)+ " arguments");	
 			}else{
 				for (var i in node.arguments){
@@ -439,7 +439,12 @@ function scopeAnalysis(tree){
 	}
 	if(tree.hasOwnProperty("procedimientos") && tree.procedimientos !== undefined ){
 		for (var i in tree.procedimientos){
-			symbolTable.procs[tree.procedimientos[i].value] = tree.procedimientos[i].arguments.length;	
+			if( tree.procedimientos[i].arguments == undefined){
+				symbolTable.procs[tree.procedimientos[i].value] = 0;
+			}else{
+				symbolTable.procs[tree.procedimientos[i].value] = tree.procedimientos[i].arguments.length;
+			}
+				
 		}
 	}
 	tree.symbolTable = symbolTable;
